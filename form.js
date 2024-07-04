@@ -2,8 +2,6 @@ const decrementBtns = document.querySelectorAll('.decrement');
 const incrementBtns = document.querySelectorAll('.increment');
 const passengerCounts = document.querySelectorAll('.passenger__count');
 
-console.log(decrementBtns, incrementBtns, passengerCounts)
-
 if (decrementBtns && incrementBtns && passengerCounts) {
     decrementBtns.forEach((decrementBtn, index) => {
         decrementBtn.addEventListener('click', () => {
@@ -47,10 +45,12 @@ document.addEventListener("DOMContentLoaded", function() {
         // Limit the number of suggestions to 10
         let count = 0;
         for (i = 0; i < arr.length; i++) {
-            if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+            if (arr[i].toUpperCase().indexOf(val.toUpperCase()) !== -1) {
                 b = document.createElement("DIV");
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].substr(val.length);
+                let startIdx = arr[i].toUpperCase().indexOf(val.toUpperCase());
+                b.innerHTML = arr[i].substr(0, startIdx); // Text before match
+                b.innerHTML += "<strong>" + arr[i].substr(startIdx, val.length) + "</strong>"; // Matched text
+                b.innerHTML += arr[i].substr(startIdx + val.length); // Text after match
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 b.addEventListener("click", function(e) {
                     inp.value = this.getElementsByTagName("input")[0].value;
