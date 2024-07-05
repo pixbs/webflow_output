@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function fetchAutocompleteData() {
-        return fetch('https://gist.githubusercontent.com/pixbs/303051124334abdafcd9069fb73c160c/raw/21dce06e86964d36bb1094323cdc3a400bac23af/data.json')
+        return fetch('https://raw.githubusercontent.com/pixbs/webflow_output/master/data.json')
             .then(response => response.json())
             .then(data => {
                 return data; // Assuming data is an array of strings
